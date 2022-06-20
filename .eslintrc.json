@@ -20,6 +20,25 @@
         "extensions": [".jsx", ".tsx"]
       }
     ],
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "arrow-parens": "off",
+    "import/extensions": [
+      "off",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/function-component-definition": [
+      1,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "implicit-arrow-linebreak": "off"
   }
 }
