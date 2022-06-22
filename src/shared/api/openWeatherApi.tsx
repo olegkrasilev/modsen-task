@@ -4,13 +4,13 @@ import { geoPosition, OpenWeatherAPIResponse } from '.';
 const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 
 export const callOpenWeatherApi = createApi({
-  reducerPath: 'weatherApi',
+  reducerPath: 'openWeatherApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.openweathermap.org/data/2.5',
   }),
   keepUnusedDataFor: 60,
   endpoints: builder => ({
-    getWeatherApi: builder.query<OpenWeatherAPIResponse, geoPosition>({
+    callOpenWeatherApi: builder.query<OpenWeatherAPIResponse, geoPosition>({
       query: args => {
         const { lat, lon } = args;
         return `weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
@@ -19,4 +19,4 @@ export const callOpenWeatherApi = createApi({
   }),
 });
 
-export const { useGetWeatherApiQuery } = callOpenWeatherApi;
+export const { useCallOpenWeatherApiQuery } = callOpenWeatherApi;

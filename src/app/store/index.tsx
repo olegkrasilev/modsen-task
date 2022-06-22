@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { callOpenWeatherApi } from '../../shared/api/api';
+import { callOpenWeatherApi } from '../../shared/api/openWeatherApi';
 
 const store = configureStore({
   reducer: { [callOpenWeatherApi.reducerPath]: callOpenWeatherApi.reducer },

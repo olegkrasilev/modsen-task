@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useGetWeatherApiQuery } from 'shared/api/api';
+import { useCallOpenWeatherApiQuery } from 'shared/api/openWeatherApi';
 import WeatherForecast from './ui';
 
 const Main: React.FC = () => {
@@ -15,7 +15,7 @@ const Main: React.FC = () => {
     { maximumAge: 60000, timeout: 10000, enableHighAccuracy: true },
   );
 
-  const { data, isLoading, isError } = useGetWeatherApiQuery({ lat, lon });
+  const { data, isLoading, isError } = useCallOpenWeatherApiQuery({ lat, lon });
 
   if (isLoading) {
     return <h1>Loading...</h1>;
