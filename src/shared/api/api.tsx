@@ -6,13 +6,14 @@ const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 export const callOpenWeatherApi = createApi({
   reducerPath: 'weatherApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.openweathermap.org/data/2.5/weather?lat=',
+    baseUrl: 'https://api.openweathermap.org/data/2.5',
   }),
+  keepUnusedDataFor: 60,
   endpoints: builder => ({
     getWeatherApi: builder.query<any, geoPosition>({
       query: args => {
         const { lat, lon } = args;
-        return `${lat}&lon=${lon}&appid=${API_KEY}`;
+        return `weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
       },
     }),
   }),

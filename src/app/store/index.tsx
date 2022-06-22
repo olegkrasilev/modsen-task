@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { weatherApi } from '../../shared/api/api';
+import { callOpenWeatherApi } from '../../shared/api/api';
 
 const store = configureStore({
-  reducer: { [weatherApi.reducerPath]: weatherApi.reducer },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(weatherApi.middleware),
+  reducer: { [callOpenWeatherApi.reducerPath]: callOpenWeatherApi.reducer },
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(callOpenWeatherApi.middleware),
 });
 
 export default store;
