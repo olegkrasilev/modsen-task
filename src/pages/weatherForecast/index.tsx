@@ -1,7 +1,6 @@
-/* eslint-disable no-shadow */
 import React, { useState } from 'react';
 import { useGetWeatherApiQuery } from 'shared/api/api';
-import styles from './styles.module.scss';
+import WeatherForecast from './ui';
 
 const Main: React.FC = () => {
   const [lat, setLat] = useState(0);
@@ -16,7 +15,7 @@ const Main: React.FC = () => {
     { maximumAge: 60000, timeout: 10000, enableHighAccuracy: true },
   );
 
-  const { isLoading, isError } = useGetWeatherApiQuery({ lat, lon });
+  const { data, isLoading, isError } = useGetWeatherApiQuery({ lat, lon });
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -26,12 +25,16 @@ const Main: React.FC = () => {
     return <h1>Something went wrong...</h1>;
   }
 
-  return (
-    <section className={styles.wrapper}>
-      <h1>1</h1>
-      <h1>2</h1>
-    </section>
-  );
+  if (!data) {
+    return <h1>Something went wrong...</h1>;
+  }
+
+  const city = data.name;
+  const temperatureCelcius = Math.round(data.main.temp - 273.15);
+  // 273.15 Formula to convert Kelvin to Celsius
+  const { description, icon } = data.weather[0];
+
+  return <WeatherForecast city={city} temperatureCelcius={temperatureCelcius} description={description} icon={icon} />;
 };
 
 export default Main;

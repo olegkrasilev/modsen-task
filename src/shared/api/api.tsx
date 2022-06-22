@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { geoPosition } from '.';
+import { geoPosition, OpenWeatherAPIResponse } from '.';
 
 const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 
@@ -10,7 +10,7 @@ export const callOpenWeatherApi = createApi({
   }),
   keepUnusedDataFor: 60,
   endpoints: builder => ({
-    getWeatherApi: builder.query<any, geoPosition>({
+    getWeatherApi: builder.query<OpenWeatherAPIResponse, geoPosition>({
       query: args => {
         const { lat, lon } = args;
         return `weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
